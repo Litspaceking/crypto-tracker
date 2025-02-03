@@ -3,30 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock, Crypto & Memecoin Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TLF Industries</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure the path to your CSS file is correct -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js Library -->
 </head>
 <body>
-    <h1>Stock, Crypto, and Memecoin Tracker</h1>
-    <div class="dropdowns">
-        <label for="risers-dropdown">Top Crypto Risers:</label>
-        <select id="risers-dropdown">
-            <option value="">Loading...</option>
-        </select>
-
-        <label for="losers-dropdown">Top Crypto Losers:</label>
-        <select id="losers-dropdown">
-            <option value="">Loading...</option>
-        </select>
-
-        <label for="stocks-dropdown">Top Stocks:</label>
-        <select id="stocks-dropdown">
-            <option value="">Loading...</option>
-        </select>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>TLF Industries</h1>
     </div>
-    <div id="details">
-        <!-- Asset details will be displayed here -->
+    
+    <!-- Live Stock Ticker -->
+<!--   <div class="stock-ticker">
+        <span id="live-ticker"></span> <!-- Ticker content will be dynamically added -->
+ <!--   </div>-->
+
+    <!-- Tab Navigation -->
+    <div class="tab">
+        <button class="tablink" onclick="openTab('Home')">Home</button>
+        <button class="tablink" onclick="openTab('Crypto')">Crypto</button>
+        <button class="tablink" onclick="openTab('Memecoin')">Memecoin</button>
+        <button class="tablink" onclick="openTab('Stock')">Stock</button>
     </div>
-    <script src="app.js"></script>
+
+    <!-- Home Tab Content -->
+    <div id="Home" class="tabcontent">
+        <h2>Welcome to TLF Industries</h2>
+        <p>Explore the world of cryptocurrencies, memecoins, and stocks.</p>
+    </div>
+
+    <!-- Crypto Tab Content -->
+    <div id="Crypto" class="tabcontent">
+        <h2>Cryptocurrencies</h2>
+        <div id="crypto-buttons"></div> <!-- Buttons will be dynamically created for crypto coins -->
+        <canvas id="crypto-chart"></canvas> <!-- Chart.js canvas for displaying crypto data -->
+    </div>
+
+    <!-- Memecoin Tab Content -->
+    <div id="Memecoin" class="tabcontent">
+        <h2>Memecoins</h2>
+        <div id="memecoin-buttons"></div> <!-- Buttons will be dynamically created for memecoins -->
+        <canvas id="memecoin-chart"></canvas> <!-- Chart.js canvas for displaying memecoin data -->
+    </div>
+
+    <!-- Stock Tab Content -->
+    <div id="Stock" class="tabcontent">
+        <h2>Stocks</h2>
+        <div id="stock-buttons"></div> <!-- Buttons for stocks will be dynamically added -->
+        <canvas id="stock-chart"></canvas> <!-- Chart.js canvas for displaying stock data -->
+    </div>
+
+    <!-- Biggest Riser and Loser Section -->
+  <!--    <div id="stock-performance" style="margin-top: 20px;">
+        <h2>Biggest Riser and Biggest Loser</h2>
+        <p><strong>Biggest Riser:</strong> <span id="biggest-riser">Loading...</span></p>
+        <p><strong>Biggest Loser:</strong> <span id="biggest-loser">Loading...</span></p>
+    </div>-->
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>TLF Industries &copy; 2024</p>
+    </div>
+</body>
+
+<!-- Notification Panel -->
+<div id="notification-panel" class="notification" style="display: none;">
+    <span id="notification-message">Refresh for new update!</span>
+    <button onclick="dismissNotification()">Close</button>
+</div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script> <!-- Ensure the path to your JS file is correct -->
 </body>
 </html>
+
+<script>
+    // Request permission for browser notifications
+    if (Notification.permission !== 'granted') {
+        Notification.requestPermission();
+    }
+    
+    // Function to show native notifications
+    function showBrowserNotification() {
+        if (Notification.permission === 'granted') {
+            new Notification("TLF Industries Update", {
+                body: "Refresh for new update!",
+                icon: "/path-to-your-icon.png"
+            });
+        }
+    }
+    
+    // Call the notification function after successful updates (from your script)
+    function triggerNotification() {
+        showBrowserNotification(); // Call the notification function
+    }
+    </script>
+    
